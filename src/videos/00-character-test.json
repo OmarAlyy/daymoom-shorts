@@ -1,0 +1,16 @@
+{
+  "id": "00-character-test",
+  "title": "Character acting test (rig v2)",
+  "lang": "ar",
+  "version": "silent",
+  "durationSec": 12.5,
+  "endCardAt": 12.5,
+  "hook": "Rig test, not a post.",
+  "music": { "bpm": 96, "key": "F", "sections": [ { "at": 0, "mood": "major" }, { "at": 5.8, "mood": "minor" }, { "at": 7.6, "mood": "major" } ] },
+  "track": [], "cam": [], "glints": [2.7, 10.7],
+  "sfx": [
+    { "at": 0.1, "type": "whoosh" }, { "at": 0.7, "type": "squeak" }, { "at": 1.4, "type": "pop" }, { "at": 2.7, "type": "sparkle" },
+    { "at": 3.0, "type": "tick" }, { "at": 4.6, "type": "pop" }, { "at": 5.8, "type": "deflate" }, { "at": 7.6, "type": "inflate" },
+    { "at": 9.0, "type": "ding" }, { "at": 9.2, "type": "squeak" }, { "at": 10.7, "type": "sparkle" }
+  ]
+}
