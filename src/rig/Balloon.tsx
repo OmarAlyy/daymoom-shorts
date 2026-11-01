@@ -37,7 +37,10 @@ export type Pose = {
   glasses: { tilt: number; y: number };
   hold?: 'none' | 'flame' | 'shield' | 'phone' | 'trophy' | 'clock';
   slack: number; // 0 taut string, 1 limp
+  handStyleL?: HandStyle; handStyleR?: HandStyle; // dot (default), open fingers, point (mitten), thumb, fist
+  flexL?: boolean; flexR?: boolean; // bent arm with an elbow
 };
+export type HandStyle = 'dot' | 'open' | 'point' | 'thumb' | 'fist';
 
 const B = (y: number, a: number, c: number): Brow => ({ y, a, c });
 const REST_L: [number, number] = [-98, 64], REST_R: [number, number] = [98, 64];
@@ -46,6 +49,7 @@ export const NEUTRAL: Pose = {
   mouth: { w: 30, c: 5, open: 0, skew: 0, y: 0 },
   handL: REST_L, handR: REST_R, waveL: 0, waveR: 0,
   tilt: 0, lean: 0, lift: 0, air: 1, glasses: { tilt: 0, y: 0 }, hold: 'none', slack: 0,
+  handStyleL: 'dot', handStyleR: 'dot', flexL: false, flexR: false,
 };
 
 /** A library of expressions/poses. Free to extend per video — these are starting points. */
@@ -67,6 +71,14 @@ export const P: Record<string, Partial<Pose>> = {
   point: { mouth: { w: 30, c: 7, open: 0.2, skew: 0, y: 0 }, browL: B(-4, -2, 4), browR: B(-4, -2, 4), handR: [138, 18] },
   hug: { mouth: { w: 26, c: 6, open: 0, skew: 0, y: 0 }, browL: B(-1, 12, 2), browR: B(-1, 12, 2), handL: [-40, 40], handR: [40, 40], tilt: -3 },
   listen: { mouth: { w: 20, c: 3, open: 0, skew: 0, y: 0 }, browL: B(-6, 6, 4), browR: B(-6, 6, 4), tilt: 8, lean: -6 },
+  waveOpen: { mouth: { w: 30, c: 8, open: 0, skew: 0, y: 0 }, browL: B(-6, -2, 6), browR: B(-6, -2, 6), handR: [118, -52], waveR: 1, handStyleR: 'open' },
+  shrugOpen: { mouth: { w: 22, c: 0, open: 0, skew: 0, y: 2 }, browL: B(-12, 2, 6), browR: B(-3, -4, 3), handL: [-132, 6], handR: [132, 6], handStyleL: 'open', handStyleR: 'open', tilt: 2 },
+  pointSide: { mouth: { w: 30, c: 7, open: 0, skew: 0, y: 0 }, browL: B(-3, -2, 4), browR: B(-3, -2, 4), handR: [140, 10], handStyleR: 'point' },
+  pointUp: { mouth: { w: 34, c: 12, open: 0.7, skew: 0, y: 0 }, browL: B(-8, -4, 6), browR: B(-8, -4, 6), handR: [112, -96], handStyleR: 'point' },
+  pointCam: { mouth: { w: 34, c: 10, open: 0, skew: 4, y: 0 }, browL: B(-4, -4, 4), browR: B(-7, 0, 5), handR: [70, 30], handStyleR: 'point', lean: 4 },
+  thumbsUp: { mouth: { w: 28, c: 7, open: 0, skew: 5, y: 0 }, browL: B(0, -3, 2), browR: B(-3, -1, 4), handR: [112, -18], handStyleR: 'thumb' },
+  flex: { mouth: { w: 26, c: 5, open: 0, skew: 4, y: 0 }, browL: B(5, -16, 0), browR: B(5, -16, 0), handL: [-118, -36], handR: [118, -36], flexL: true, flexR: true, handStyleL: 'fist', handStyleR: 'fist', lift: -8 },
+  lopsided: { mouth: { w: 28, c: 6, open: 0, skew: 8, y: 0 }, browL: B(-2, 8, 2), browR: B(-6, 2, 4), tilt: 4 },
   sleep: { mouth: { w: 14, c: 3, open: 0, skew: 0, y: 2 }, browL: B(4, -2, -2), browR: B(4, -2, -2), tilt: -8, glasses: { tilt: 0, y: 5 }, lift: 6 },
 };
 
@@ -88,6 +100,8 @@ const mixPose = (a: Pose, b: Pose, k: { face: number; mouth: number; arms: numbe
   air: mixN(a.air, b.air, k.body), slack: mixN(a.slack, b.slack, k.body),
   glasses: { tilt: mixN(a.glasses.tilt, b.glasses.tilt, k.face), y: mixN(a.glasses.y, b.glasses.y, k.face) },
   hold: k.arms > 0.5 ? b.hold : a.hold,
+  handStyleL: k.arms > 0.5 ? b.handStyleL : a.handStyleL, handStyleR: k.arms > 0.5 ? b.handStyleR : a.handStyleR,
+  flexL: k.arms > 0.5 ? b.flexL : a.flexL, flexR: k.arms > 0.5 ? b.flexR : a.flexR,
 });
 
 /** Evaluate the keyed performance at a frame: springs between keys, with face-first overlap. */
@@ -196,10 +210,8 @@ export const BalloonRig: React.FC<RigProps> = ({ keys, color = 'blue', dark = tr
         {lens ? <g transform={`translate(${cx} ${GLASS_Y})`}>{lens}</g> : null}
         {sweep >= 0 ? <rect x={cx - 60 + sweep * 120} y={GLASS_Y - 40} width={10} height={80} fill={CREAM} opacity={0.5} transform={`rotate(35 ${cx} ${GLASS_Y})`} /> : null}
       </g>
-      <path d={`M${cx - 17} ${GLASS_Y - 2}L${cx - 6} ${GLASS_Y - 14}`} stroke={CREAM} strokeWidth={3.4} strokeLinecap="round" opacity={shineOp} />
-      <path d={`M${cx - 13} ${GLASS_Y + 6}L${cx + 1} ${GLASS_Y - 9}`} stroke={CREAM} strokeWidth={2.4} strokeLinecap="round" opacity={shineOp * 0.8} />
-      <circle cx={cx + 12} cy={GLASS_Y + 12} r={2.2} fill={CREAM} opacity={0.35} />
-      <circle cx={cx + 17} cy={GLASS_Y + 6} r={1.4} fill={CREAM} opacity={0.35} />
+      <path d={`M${cx - 15} ${GLASS_Y - 3}L${cx - 4} ${GLASS_Y - 14}`} stroke={CREAM} strokeWidth={4} strokeLinecap="round" opacity={shineOp} />
+      <circle cx={cx + 9} cy={GLASS_Y + 13} r={2.6} fill={CREAM} opacity={0.35} />
     </g>
   );
   const sparkle = sig === undefined ? null : (() => {
@@ -209,7 +221,7 @@ export const BalloonRig: React.FC<RigProps> = ({ keys, color = 'blue', dark = tr
   })();
 
   // ---- arms: noodle from shoulder to hand target, sagging control points
-  const arm = (side: -1 | 1, target: [number, number], wave: number) => {
+  const arm = (side: -1 | 1, target: [number, number], wave: number, style: HandStyle = 'dot', flex = false) => {
     const sh = [side * (halfWidthAt(18) - 3), 18];
     let [hx, hy] = target;
     if (wave > 0.01) { // wave: hand swings around a point above the shoulder
@@ -226,10 +238,15 @@ export const BalloonRig: React.FC<RigProps> = ({ keys, color = 'blue', dark = tr
     const bend = side * sag * 0.7;
     const c1 = [sh[0] + dx * 0.3 + nx * bend + wob, sh[1] + dy * 0.3 + ny * bend + sag * 0.5];
     const c2 = [sh[0] + dx * 0.72 - nx * bend * 0.45, sh[1] + dy * 0.72 - ny * bend * 0.45 + sag * 0.25];
+    const pathD = flex
+      ? (() => { const ex = sh[0] + side * 44, ey = sh[1] + 26; return `M${sh[0]} ${sh[1]}Q${sh[0] + side * 26} ${sh[1] + 30} ${ex} ${ey}Q${ex + side * 14} ${ey - 6} ${hx} ${hy}`; })()
+      : `M${sh[0]} ${sh[1]}C${c1[0]} ${c1[1]} ${c2[0]} ${c2[1]} ${hx} ${hy}`;
+    // direction the forearm points (for hand shapes)
+    const dirA = flex ? -90 : (Math.atan2(hy - c2[1], hx - c2[0]) * 180) / Math.PI;
     return (
       <g key={side}>
-        <path d={`M${sh[0]} ${sh[1]}C${c1[0]} ${c1[1]} ${c2[0]} ${c2[1]} ${hx} ${hy}`} stroke={LN} strokeWidth={5.5} strokeLinecap="round" fill="none" />
-        <circle cx={hx} cy={hy} r={7.5} fill={LN} />
+        <path d={pathD} stroke={LN} strokeWidth={5.5} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        {hand(style, hx, hy, dirA, side, LN)}
         {side === 1 ? holdItem(p.hold, hx, hy, LN) : null}
       </g>
     );
@@ -255,8 +272,8 @@ export const BalloonRig: React.FC<RigProps> = ({ keys, color = 'blue', dark = tr
           <path d="M-7 98L7 98L4.5 108L-4.5 108Z" fill={C.knot} />
           <path d={BODY_PATH} fill={C.body} />
           <ellipse cx={-46} cy={-52} rx={11} ry={24} transform="rotate(-28 -46 -52)" fill={CREAM} opacity={0.42} />
-          {arm(-1, p.handL, p.waveL)}
-          {arm(1, p.handR, p.waveR)}
+          {arm(-1, p.handL, p.waveL, p.handStyleL, p.flexL)}
+          {arm(1, p.handR, p.waveR, p.handStyleR, p.flexR)}
           {brow(-1, p.browL)}{brow(1, p.browR)}
           <g transform={`translate(0 ${p.glasses.y}) rotate(${p.glasses.tilt} 0 ${GLASS_Y})`}>
             <path d={`M-4 ${GLASS_Y - 6}Q0 ${GLASS_Y - 11} 4 ${GLASS_Y - 6}`} stroke={INK} strokeWidth={5} fill="none" strokeLinecap="round" />
@@ -268,6 +285,33 @@ export const BalloonRig: React.FC<RigProps> = ({ keys, color = 'blue', dark = tr
       </g>
     </svg>
   );
+};
+
+// hand shapes: dot by default; fingers only when the gesture needs them
+const hand = (style: HandStyle, x: number, y: number, dirA: number, side: number, LN: string) => {
+  if (style === 'open') return (
+    <g transform={`translate(${x} ${y}) rotate(${dirA + 90})`}>
+      <circle r={7.5} fill={LN} />
+      {[-38, -13, 13, 38].map((a, i) => (
+        <path key={i} d={`M0 0L${Math.sin((a * Math.PI) / 180) * 15} ${-Math.cos((a * Math.PI) / 180) * 15}`} stroke={LN} strokeWidth={4.2} strokeLinecap="round" />
+      ))}
+    </g>
+  );
+  if (style === 'point') return (
+    <g transform={`translate(${x} ${y}) rotate(${dirA})`}>
+      <ellipse cx={5} cy={0} rx={12} ry={7.5} fill={LN} />
+      <circle cx={-1} cy={-6} r={3.6} fill={LN} />
+    </g>
+  );
+  if (style === 'thumb') return (
+    <g transform={`translate(${x} ${y})`}>
+      <rect x={-8.5} y={-5} width={17} height={14} rx={6} fill={LN} />
+      <rect x={-8.5} y={-19} width={7.5} height={17} rx={3.75} fill={LN} />
+    </g>
+  );
+  if (style === 'fist') return <circle cx={x} cy={y} r={10} fill={LN} />;
+  void side;
+  return <circle cx={x} cy={y} r={7.5} fill={LN} />;
 };
 
 // held objects (no fingers unless holding something — the hand wraps the item)

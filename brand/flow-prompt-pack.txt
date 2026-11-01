@@ -1,0 +1,47 @@
+DAYMOOM x GOOGLE FLOW - prompt pack (Veo 3.1, Ingredients to Video, 9:16, 8 s clips)
+
+INGREDIENTS (upload in Flow):
+- ingredient_1_character.png  -> the character (always)
+- ingredient_3_background.png -> the setting (always)
+- ingredient_4_style_frame.png -> optional start frame (Frames to Video) for clip 1
+- ingredient_2_poses.png -> do NOT use as a video ingredient (8 balloons = Veo may draw 8). Use it only as a style reference when making new still images with Nano Banana.
+
+PASTE AT THE START OF EVERY PROMPT
+Character: Using the provided image for the daymoom balloon: a flat 2D cartoon balloon character with an egg-shaped matte medium-blue body (#4A86D4), a small darker blue knot, a thin wavy cream string, a soft cream highlight on the upper left, big round black sunglasses with thin cream shine lines, short black eyebrows and a simple black smile line, thin cream noodle arms with round dot hands. The balloon keeps its sunglasses on the whole time, has a face without visible eyes or nose, keeps the same blue colour, and floats instead of walking.
+Style: Using the provided background: flat 2D vector animation with clean shapes and smooth, gentle motion, a deep night-navy sky (#080C24) with a soft blue glow in the centre, small cream stars and a pale cream moon in the upper right. Vertical 9:16. A clean frame without any on-screen text or captions.
+Voice: The balloon speaks in a warm, confident young voice with a dry, playful tone, mid pitch, relaxed American accent.
+
+CLIP 1 - Hook
+[00:00-00:02] Wide shot: the balloon drops in from the top of the frame, bounces once on the air with a squash, and its sunglasses glint. SFX: a soft whoosh, then a light bounce.
+[00:02-00:05] Medium shot, the balloon faces the camera and says: "Every January you say: this time will be different."
+[00:05-00:08] It raises one eyebrow and shrugs with both arms. The balloon says: "Mm-hm. Sure." Ambient: quiet night air.
+
+CLIP 2 - Back to zero
+[00:00-00:03] Medium shot: the balloon slowly loses air, droops and sinks a little, string swaying. SFX: a long deflating hiss. The balloon says: "Three weeks later? Back to zero."
+[00:03-00:05] It gives a small sad wobble.
+[00:05-00:08] It looks at the camera with a lopsided smile and says: "Been there. Literally."
+
+CLIP 3 - The secret
+[00:00-00:02] The balloon puffs back up, bounces upward with confidence, sunglasses glint. SFX: a quick inflate pop. It says: "Okay. Here's the secret."
+[00:02-00:05] Slow push-in as it leans toward the camera and says: "Forget the big leap."
+[00:05-00:08] It points one arm up and says: "One percent. A day. That's the trick."
+
+CLIP 4 - The climb
+[00:00-00:05] Tracking shot: the balloon floats up along a glowing golden curved path that rises gently and then steeply toward the moon, stars drifting past. The balloon says: "One percent better every day, and a year later, you're thirty-seven times better."
+[00:05-00:08] At the top it celebrates with both arms up as tiny gold sparkles burst around it. SFX: a bright chime.
+
+CLIP 5 - The valley
+[00:00-00:03] Medium shot: the balloon floats low over a dark, shallow valley under the stars, eyebrows worried. It says: "The first weeks feel like nothing."
+[00:03-00:05] It looks down at the valley and says: "This is where most people quit."
+[00:05-00:08] Its eyebrows turn determined, it flexes both arms and rises a little. It says: "Not us. Keep showing up."
+
+CLIP 6 - Tiny steps and outro
+[00:00-00:03] Three small glowing green checkmark bubbles pop up around the balloon one after another. SFX: three soft pops. It says: "So make it tiny. Too small to skip."
+[00:03-00:06] A small translucent shield bubble wraps around it for a moment. It says: "Missed a day? Never miss twice."
+[00:06-00:08] Wide shot under the moon, it waves at the camera. It says: "See you on the climb."
+
+AFTER FLOW (CapCut or any editor):
+- Put the headlines and captions on top yourself (Veo text is unreliable): Bricolage Grotesque 800 for headlines, Manrope for captions, cream #F4EFE6, key word in gold #F2BE4A.
+- End card: wordmark_night.png + "Tiny goals. Every day. Better with friends." + "Idea from Atomic Habits by James Clear".
+- Music at a low level under the voice (HoliznaCC0, CC0).
+- Turn on the AI-generated label when you post.

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Composition, staticFile, delayRender, continueRender } from 'remotion';
 import { FPS, H, W } from './theme';
-import { SaidYes } from './compositions/SaidYes';
-import said from './videos/01-said-yes.json';
+import { OnePercent } from './compositions/OnePercent';
+import onePct from './videos/01-one-percent.json';
 import { CharacterTest, ExpressionSheet } from './compositions/CharacterTest';
 import ctest from './videos/00-character-test.json';
 
 // One composition per video. Add new ones here (component + its JSON).
 export const VIDEOS: { meta: { id: string; durationSec: number }; component: React.FC<{ guides?: boolean }> }[] = [
   { meta: ctest, component: CharacterTest },
-  { meta: said, component: SaidYes },
+  { meta: onePct, component: OnePercent },
 ];
 
 // Fonts are self-hosted (OFL), loaded once before any frame renders.
@@ -22,6 +22,10 @@ const FONTS: [string, string, string, string][] = [
   ['Plex Arabic', 'plex-arabic-700-latin.woff2', '700', LAT],
   ['Baloo Bhaijaan 2', 'baloo-bhaijaan-2-arabic-800-normal.woff2', '800', AR],
   ['Baloo Bhaijaan 2', 'baloo-bhaijaan-2-latin-800-normal.woff2', '800', LAT],
+  ['Bricolage Grotesque', 'bricolage-grotesque-latin-800-normal.woff2', '800', LAT],
+  ['Manrope', 'manrope-latin-600-normal.woff2', '600', LAT],
+  ['Manrope', 'manrope-latin-700-normal.woff2', '700', LAT],
+  ['Manrope', 'manrope-latin-800-normal.woff2', '800', LAT],
   ['Young Serif', 'young-serif-400-latin.woff2', '400', LAT],
   ['Young Serif', 'young-serif-400-latin-ext.woff2', '400', 'U+0100-024F, U+1E00-1EFF'],
 ];

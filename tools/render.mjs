@@ -46,7 +46,7 @@ for (const spec of specs) {
       await renderStill({ ...common, composition, inputProps, frame, output: `qa/${spec.id}/f${String(frame).padStart(4, '0')}.png`, imageFormat: 'png' });
     }
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-pattern_type', 'glob', '-i', `qa/${spec.id}/f*.png`,
-      '-vf', 'scale=270:480,tile=8x3:padding=6:color=white', '-frames:v', '1', `qa/${spec.id}-sheet.png`]);
+      '-vf', 'scale=270:480,tile=8x4:padding=6:color=white', '-frames:v', '1', `qa/${spec.id}-sheet.png`]);
     console.log('qa sheet', `qa/${spec.id}-sheet.png`);
     continue;
   }

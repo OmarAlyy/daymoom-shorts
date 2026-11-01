@@ -4,18 +4,18 @@ Vertical short videos (TikTok, Reels, Facebook Reels, YouTube Shorts) starring t
 Daymoom Balloon. Everything is drawn and animated in code (Remotion), so the
 character stays exactly on-model in every frame.
 
-**Status:** groundwork. The character rig v2 is built, and an acting test
-(`00-character-test`) is waiting for the owner's review. No finished videos yet.
+**Status:** first video rendered. The voice track is pending (the TTS engine
+isn't chosen yet), so for now the captions carry the voice lines.
 
 ## Videos
 
 | # | Title | Length | Hook |
 |---|---|---|---|
-| — | none published yet | | |
+| 01 | One percent a day ([script](scripts/01-one-percent.md)) | 49.5s | "This time will be different." |
 
 ## Layout
 
-- `brand/`: `brand.json` (colours, fonts, rules and the owner's decisions), the owner's `style-prompts.md`, and `character-bible.html`.
+- `brand/`: `brand.json`, the owner's `style-prompts.md` and `flow-prompt-pack.txt`, and `reference/` (character, poses, background, style frame, wordmark — the visual source of truth). `character-bible.html` is early reference only.
 - `src/rig/Balloon.tsx`: the character rig v2, built from the owner's style guide. The face and arms are pose parameters, and keys spring between poses: brows lead, the mouth follows 2 frames later, the arms 4 frames later.
 - `src/compositions/`: one composition per video. `CharacterTest.tsx` holds the acting test and the expression sheet.
 - `src/videos/*.json`: timing data per video, shared by the composition and the sound script.

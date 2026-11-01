@@ -1,0 +1,302 @@
+{
+ "id": "01-one-percent",
+ "title": "One percent a day",
+ "lang": "en",
+ "version": "narrator",
+ "durationSec": 49.5,
+ "endCardAt": 48.0,
+ "hook": "This time will be different. (balloon drops in, bounces, glasses glint)",
+ "credit": "Idea from Atomic Habits by James Clear",
+ "fact": {
+  "text": "1.01^365 ≈ 37.8",
+  "source": "Atomic Habits · James Clear (2018)"
+ },
+ "music": {
+  "bpm": 88,
+  "key": "F",
+  "sections": [
+   {
+    "at": 0,
+    "mood": "major"
+   },
+   {
+    "at": 8,
+    "mood": "minor"
+   },
+   {
+    "at": 16,
+    "mood": "major"
+   },
+   {
+    "at": 32,
+    "mood": "minor"
+   },
+   {
+    "at": 37.2,
+    "mood": "major"
+   }
+  ]
+ },
+ "track": [],
+ "cam": [],
+ "glints": [
+  1.4,
+  16.8,
+  21.6,
+  29.1,
+  37.6,
+  47.0
+ ],
+ "captions": [
+  {
+   "from": 2.0,
+   "to": 5.0,
+   "text": "Every January you say: this time will be *different.*"
+  },
+  {
+   "from": 5.3,
+   "to": 8.0,
+   "text": "Mm-hm. *Sure.*"
+  },
+  {
+   "from": 8.4,
+   "to": 11.0,
+   "text": "Three weeks later? Back to *zero.*"
+  },
+  {
+   "from": 13.0,
+   "to": 16.0,
+   "text": "Been there. *Literally.*"
+  },
+  {
+   "from": 16.3,
+   "to": 18.0,
+   "text": "Okay. Here's the *secret.*"
+  },
+  {
+   "from": 18.2,
+   "to": 21.0,
+   "text": "Forget the *big leap.*"
+  },
+  {
+   "from": 21.2,
+   "to": 24.0,
+   "text": "One percent. A day. That's the *trick.*"
+  },
+  {
+   "from": 24.3,
+   "to": 26.6,
+   "text": "One percent better every day,"
+  },
+  {
+   "from": 26.6,
+   "to": 29.4,
+   "text": "and a year later, you're *37 times* better."
+  },
+  {
+   "from": 32.3,
+   "to": 35.0,
+   "text": "The first weeks feel like *nothing.*"
+  },
+  {
+   "from": 35.0,
+   "to": 37.1,
+   "text": "This is where most people *quit.*"
+  },
+  {
+   "from": 37.2,
+   "to": 40.0,
+   "text": "Not us. Keep *showing up.*"
+  },
+  {
+   "from": 40.3,
+   "to": 43.0,
+   "text": "So make it tiny. *Too small to skip.*"
+  },
+  {
+   "from": 43.2,
+   "to": 46.0,
+   "text": "Missed a day? *Never miss twice.*"
+  },
+  {
+   "from": 46.2,
+   "to": 48.0,
+   "text": "See you on the *climb.*"
+  }
+ ],
+ "headlines": [
+  {
+   "from": 0,
+   "to": 2.0,
+   "text": "This time will be *different.*"
+  },
+  {
+   "from": 8.0,
+   "to": 16.0,
+   "text": "Back to *zero.*"
+  },
+  {
+   "from": 16.0,
+   "to": 21.2,
+   "text": "Here's the *secret.*"
+  },
+  {
+   "from": 21.2,
+   "to": 24.0,
+   "text": "*1%* a day."
+  },
+  {
+   "from": 32.0,
+   "to": 40.0,
+   "text": "Where most people *quit.*"
+  },
+  {
+   "from": 40.0,
+   "to": 43.2,
+   "text": "Too small to *skip.*"
+  },
+  {
+   "from": 43.2,
+   "to": 46.2,
+   "text": "Never miss *twice.*"
+  }
+ ],
+ "sfx": [
+  {
+   "at": 0.05,
+   "type": "whoosh"
+  },
+  {
+   "at": 0.5,
+   "type": "thud"
+  },
+  {
+   "at": 1.4,
+   "type": "sparkle"
+  },
+  {
+   "at": 5.35,
+   "type": "pop"
+  },
+  {
+   "at": 8.0,
+   "type": "deflate"
+  },
+  {
+   "at": 8.02,
+   "type": "tick"
+  },
+  {
+   "at": 8.6,
+   "type": "deflate"
+  },
+  {
+   "at": 10.2,
+   "type": "tick"
+  },
+  {
+   "at": 13.0,
+   "type": "squeak"
+  },
+  {
+   "at": 16.0,
+   "type": "inflate"
+  },
+  {
+   "at": 16.02,
+   "type": "tick"
+  },
+  {
+   "at": 16.35,
+   "type": "pop"
+  },
+  {
+   "at": 16.8,
+   "type": "sparkle"
+  },
+  {
+   "at": 18.2,
+   "type": "whoosh"
+  },
+  {
+   "at": 21.2,
+   "type": "pop"
+  },
+  {
+   "at": 21.22,
+   "type": "tick"
+  },
+  {
+   "at": 21.6,
+   "type": "sparkle"
+  },
+  {
+   "at": 24.0,
+   "type": "whoosh"
+  },
+  {
+   "at": 27.0,
+   "type": "tick"
+  },
+  {
+   "at": 29.0,
+   "type": "chime"
+  },
+  {
+   "at": 29.1,
+   "type": "sparkle"
+  },
+  {
+   "at": 32.0,
+   "type": "whoosh"
+  },
+  {
+   "at": 32.02,
+   "type": "tick"
+  },
+  {
+   "at": 37.2,
+   "type": "pop"
+  },
+  {
+   "at": 37.6,
+   "type": "sparkle"
+  },
+  {
+   "at": 40.02,
+   "type": "tick"
+  },
+  {
+   "at": 40.5,
+   "type": "pop"
+  },
+  {
+   "at": 41.3,
+   "type": "pop"
+  },
+  {
+   "at": 42.1,
+   "type": "pop"
+  },
+  {
+   "at": 43.2,
+   "type": "puff"
+  },
+  {
+   "at": 43.220000000000006,
+   "type": "tick"
+  },
+  {
+   "at": 46.2,
+   "type": "squeak"
+  },
+  {
+   "at": 47.0,
+   "type": "sparkle"
+  },
+  {
+   "at": 48.0,
+   "type": "chime"
+  }
+ ]
+}
